@@ -1,17 +1,30 @@
+import { ImageInput, Rule } from "sanity";
+
 const product = {
     name: 'product',
     title: 'Products',
     type: 'document',
     fields: [
         {
-            name: 'image',
+            name: 'images',
             title: 'Images',
             type: 'array',
-            of: [{ type: 'image' }],
-            options: {
-                hotspot: true,
-            },
-        },
+            of: [
+              {
+                type: 'image',
+                fields: [
+                  {
+                    name: 'alt',
+                    type: 'string',
+                    title: 'Alt Text'
+                  }
+                ],
+                options: {
+                  hotspot: true
+                }
+              }
+            ]
+          },
         {
             name: 'name',
             title: 'Name',
