@@ -1,3 +1,5 @@
+"use client";
+
 import { Footer, Navbar } from "../components";
 import "../globals.css";
 import Head from "next/head";
@@ -13,11 +15,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="p-[10px]">
       <Head>
         <title>Tech Store</title>
       </Head>
-      <body className="p-[10px]">
+      <body>
         <header>
           <Navbar />
         </header>

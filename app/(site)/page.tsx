@@ -19,7 +19,7 @@ export default async function Home() {
         </p>
       </div>
 
-      <div className="mt-5 flex w-full flex-wrap justify-center gap-10">
+      <div className="mt-5 flex w-full flex-wrap justify-center">
         {/* products-container */}
         {products.map((product) => (
           <Product key={product._id} product_slug={product.slug} />
