@@ -105,7 +105,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ params }) => {
             <p className="text-center p-2 border-solid border-[1px] border-gray-500 flex flex-row justify-evenly gap-2 min-w-[200px] md:flex-grow md:w-[300px]">
               {/* quantity-desc */}
               <span
-                className="cursor-pointer py-2 px-3 text-base border-r-[1px] border-gray-500 text-center w-[60px] self-center"
+                className="cursor-pointer py-2 px-3 text-base border-r-[1px] border-gray-500 text-center self-center flex justify-center w-[30%]"
                 onClick={decQty}
               >
                 <AiOutlineMinus className="text-red-400" />
@@ -116,7 +116,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ params }) => {
               </span>
               {/* num */}
               <span
-                className="cursor-pointer py-2 px-3 text-base text-center w-[60px] self-center border-solid border-l-[1px] border-gray-500"
+                className="cursor-pointer py-2 px-3 text-base text-center self-center border-solid border-l-[1px] border-gray-500 flex justify-center w-[30%]"
                 onClick={incQty}
               >
                 <AiOutlinePlus className="text-[#31a831]" />
