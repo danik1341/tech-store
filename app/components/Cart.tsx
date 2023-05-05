@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import Link from "next/link";
 import {
   AiOutlineMinus,
@@ -15,7 +15,6 @@ import { BiDollar } from "react-icons/bi";
 type CartProps = {};
 
 const Cart: React.FC<CartProps> = () => {
-  const cartRef = useRef();
   const {
     totalPrice,
     totalQuantities,
