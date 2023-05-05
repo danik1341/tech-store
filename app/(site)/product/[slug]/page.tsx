@@ -12,6 +12,7 @@ import { getProduct, getProducts } from "@/sanity/sanity-utils";
 import { Product as ProductType } from "@/type/Product";
 import React, { useEffect, useState } from "react";
 import { Product } from "@/app/components";
+import { useStateContext } from "@/context/StateContext";
 
 type ProductDetailsProps = {
   params: { slug: string };
@@ -22,6 +23,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ params }) => {
   const [product, setProduct] = useState<ProductType | null>(null);
   const [index, setIndex] = useState(0);
   const [productsList, setProductsList] = useState<ProductType[] | null>(null);
+  const { decQty, incQty, qty, onAdd } = useStateContext();
 
   useEffect(() => {
     async function fetchData() {
@@ -104,18 +106,18 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ params }) => {
               {/* quantity-desc */}
               <span
                 className="cursor-pointer py-2 px-3 text-base border-r-[1px] border-gray-500 text-center w-[60px] self-center"
-                // onClick={decQty}
+                onClick={decQty}
               >
                 <AiOutlineMinus className="text-red-400" />
               </span>
               {/* minus */}
               <span className="text-xl px-2 text-center self-center mx-2">
-                0
+                {qty}
               </span>
               {/* num */}
               <span
                 className="cursor-pointer py-2 px-3 text-base text-center w-[60px] self-center border-solid border-l-[1px] border-gray-500"
-                // onClick={incQty}
+                onClick={incQty}
               >
                 <AiOutlinePlus className="text-[#31a831]" />
               </span>
@@ -127,7 +129,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ params }) => {
             <button
               type="button"
               className="py-3 px-5 border-solid border-[1px] border-[#f02d34] mt-10 text-lg font-medium bg-white text-[#f02d34] cursor-pointer w-[200px] scale-100 transform transition-transform duration-500 ease-linear hover:scale-110"
-              // onClick={() => onAdd(product, qty)}
+              onClick={() => onAdd(product, qty)}
             >
               Add to Cart
             </button>
