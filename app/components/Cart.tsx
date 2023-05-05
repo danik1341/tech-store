@@ -20,13 +20,15 @@ const Cart: React.FC<CartProps> = () => {
     totalPrice,
     totalQuantities,
     cartItems,
-    showToast,
     setShowCart,
     toggleCartItemQuanitity,
     onRemove,
   } = useStateContext();
   return (
-    <div className="w-[100vw] bg-black bg-opacity-30 fixed right-0 top-0 z-[100] transition-all duration-1000 ease-in-out">
+    <div
+      // ref={cartRef}
+      className="w-[100vw] bg-black bg-opacity-30 fixed right-0 top-0 z-[100] transition-all duration-1000 ease-in-out"
+    >
       {/* cart-wrapper */}
       <div className="h-[100vh] md:w-[600px] w-[415px] bg-white float-right md:py-10 md:px-3 p-2 relative  overflow-y-scroll">
         {/* cart-container */}
@@ -142,15 +144,17 @@ const Cart: React.FC<CartProps> = () => {
               <h3 className="md:text-2xl text-xl">{totalPrice}</h3>
             </div>
             <div>
-              {/* btn-container */}
-              <button
-                type="button"
-                className="w-full max-w-[400px] py-[10px] px-3 rounded-2xl border-none text-xl mt-3 md:mt-10 uppercase bg-[#f02d34] text-white cursor-pointer hover:transform hover:scale-110 transition-all duration-500 ease-in-out"
-                // onClick={}
-              >
-                {/* btn */}
-                Pay With Stripe
-              </button>
+              <Link href={"checkout"}>
+                {/* btn-container */}
+                <button
+                  type="button"
+                  className="w-full max-w-[400px] py-[10px] px-3 rounded-2xl border-none text-xl mt-3 md:mt-10 uppercase bg-[#f02d34] text-white cursor-pointer hover:transform hover:scale-110 transition-all duration-500 ease-in-out"
+                  onClick={() => setShowCart(false)}
+                >
+                  {/* btn */}
+                  Pay With PayPal
+                </button>
+              </Link>
             </div>
           </div>
         )}

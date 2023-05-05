@@ -13,6 +13,7 @@ import { Product as ProductType } from "@/type/Product";
 import React, { useEffect, useState } from "react";
 import { Product } from "@/app/components";
 import { useStateContext } from "@/context/StateContext";
+import Link from "next/link";
 
 type ProductDetailsProps = {
   params: { slug: string };
@@ -134,14 +135,16 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ params }) => {
               Add to Cart
             </button>
             {/* add-to-cart */}
-            <button
-              type="button"
-              className="w-[200px] py-3 px-5 bg-[#f02d34] text-white border-none md:mt-10 mt-5 text-lg font-medium cursor-pointer scale-100 transform transition-transform duration-500 ease-linear hover:scale-110"
-              // onClick={handleBuyNow}
-            >
-              Buy Now
-            </button>
-            {/* buy-now */}
+            <Link href={"checkout"}>
+              <button
+                type="button"
+                onClick={() => onAdd(product, qty)}
+                className="w-[200px] py-3 px-5 bg-[#f02d34] text-white border-none md:mt-10 mt-5 text-lg font-medium cursor-pointer scale-100 transform transition-transform duration-500 ease-linear hover:scale-110"
+              >
+                Buy Now
+              </button>
+              {/* buy-now */}
+            </Link>
           </div>
         </div>
       </div>
