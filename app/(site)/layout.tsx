@@ -1,8 +1,10 @@
 "use client";
 
+import StateContext from "@/context/StateContext";
 import { Footer, Navbar } from "../components";
 import "../globals.css";
 import Head from "next/head";
+import { Toaster } from "react-hot-toast";
 
 export const metadata = {
   title: "Create Next App",
@@ -20,13 +22,16 @@ export default function RootLayout({
         <title>Tech Store</title>
       </Head>
       <body>
-        <header>
-          <Navbar />
-        </header>
-        <main>{children}</main>
-        <footer>
-          <Footer />
-        </footer>
+        <StateContext>
+          <Toaster />
+          <header>
+            <Navbar />
+          </header>
+          <main>{children}</main>
+          <footer>
+            <Footer />
+          </footer>
+        </StateContext>
       </body>
     </html>
   );
