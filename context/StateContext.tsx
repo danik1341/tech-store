@@ -1,8 +1,10 @@
 "use client";
 
 import { Product } from "@/type/Product";
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import { ToastOptions, toast } from "react-hot-toast";
+
+type ToastType = "success" | "error" | "loading" | "blank";
 
 type StateContextType = {
   showCart: boolean;
@@ -14,6 +16,9 @@ type StateContextType = {
   incQty: () => void;
   decQty: () => void;
   onAdd: (product: Product, quantity: number) => void;
+  toggleCartItemQuanitity: (id: string, value: string) => void;
+  onRemove: (product: Product) => void;
+  showToast: (message: string, type: ToastType, options?: ToastOptions) => void;
 };
 
 const defaultValues: StateContextType = {
@@ -26,13 +31,14 @@ const defaultValues: StateContextType = {
   incQty: () => {},
   decQty: () => {},
   onAdd: (product: Product, quantity: number) => {},
+  toggleCartItemQuanitity: (id: string, value: string) => {},
+  onRemove: (product: Product) => {},
+  showToast: () => {},
 };
 
 type StateContextProps = {
   children: React.ReactNode;
 };
-
-type ToastType = "success" | "error" | "loading" | "blank";
 
 const Context = createContext(defaultValues);
 
@@ -108,6 +114,44 @@ export default function StateContext({ children }: StateContextProps) {
     showToast(`${qty} ${product.name} added to the cart`, "success");
   };
 
+  const onRemove = (product: Product) => {
+    const foundProduct = cartItems.find((item) => item._id === product._id);
+    if (foundProduct === undefined) return;
+
+    const newCartItems = cartItems.filter((item) => item._id !== product._id);
+
+    setTotalPrice(
+      (prevTotalPrice) =>
+        prevTotalPrice - foundProduct.price * foundProduct.quantity
+    );
+    setTotalQuantities(
+      (prevTotalQuantities) => prevTotalQuantities - foundProduct.quantity
+    );
+    setCartItems(newCartItems);
+  };
+
+  const toggleCartItemQuanitity = (id: string, value: string) => {
+    const foundIndex = cartItems.findIndex((item) => item._id === id);
+    if (foundIndex === -1) return;
+
+    const foundProduct = { ...cartItems[foundIndex] };
+    if (value === "inc") {
+      foundProduct.quantity++;
+      setTotalPrice((prevTotalPrice) => prevTotalPrice + foundProduct.price);
+      setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + 1);
+    } else if (value === "dec") {
+      if (foundProduct.quantity > 1) {
+        foundProduct.quantity--;
+        setTotalPrice((prevTotalPrice) => prevTotalPrice - foundProduct.price);
+        setTotalQuantities((prevTotalQuantities) => prevTotalQuantities - 1);
+      }
+    }
+
+    const newCartItems = [...cartItems];
+    newCartItems[foundIndex] = foundProduct;
+    setCartItems(newCartItems);
+  };
+
   const incQty = () => {
     setQty((prevQty) => prevQty + 1);
   };
@@ -130,6 +174,9 @@ export default function StateContext({ children }: StateContextProps) {
     incQty,
     decQty,
     onAdd,
+    toggleCartItemQuanitity,
+    onRemove,
+    showToast,
   };
 
   return <Context.Provider value={values}>{children}</Context.Provider>;
