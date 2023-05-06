@@ -9,7 +9,7 @@ type FooterBannerProps = {
 
 const FooterBanner: React.FC<FooterBannerProps> = ({ footerBanner }) => {
   return (
-    <div className="py-24 px-10 bg-[#f02d34] rounded-2xl relative md:h-[400px] h-[560px] leading-none text-white w-full md:mt-[120px] mt-20">
+    <div className="py-24 px-10 bg-[#f02d34] rounded-2xl relative md:h-[400px] h-[570px] leading-none text-white w-full md:mt-[120px] mt-20">
       {/* footer-banner-container */}
       <div className="flex justify-between md:flex-nowrap md:gap-0 flex-wrap gap-5">
         {/* banner-desc */}
@@ -43,7 +43,7 @@ const FooterBanner: React.FC<FooterBannerProps> = ({ footerBanner }) => {
         <img
           src={urlFor(footerBanner.image).url()}
           alt="headphones"
-          className="left-[30%] top-[6%] h-[62%] w-[77%] absolute md:top-[-25%] md:left-[25%] md:h-[450px] md:w-[450px]"
+          className="left-[50%] top-[6%] h-[50%] w-[50%] absolute md:top-[-10%] md:left-[25%] md:h-[350px] md:w-[350px]"
         />
       </div>
     </div>

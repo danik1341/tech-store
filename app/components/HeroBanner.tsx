@@ -22,7 +22,7 @@ const HeroBanner: React.FC<HeroBannerProps> = ({ heroBanner }) => {
         <img
           src={urlFor(heroBanner.image).url()}
           alt="headphones"
-          className="absolute right-[-6%] top-[-2%] h-[62%] w-[77%] md:right-[20%] md:top-0 md:h-[450px] md:w-[450px]"
+          className="absolute right-[5%] top-[25%] h-[50%] w-[50%] md:right-[10%] md:top-0 md:h-[450px] md:w-[450px]"
         />
         <div>
           <Link href={`/product/${heroBanner.product}`}>
