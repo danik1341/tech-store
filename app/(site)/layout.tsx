@@ -15,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="p-[10px]">
+    <html lang="en" className="p-[10px] w-full">
       <Head>
         <title>Tech Store</title>
       </Head>
